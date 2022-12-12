@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="index.css">
     <script src="index.js"></script>
     <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script type="module" src="index.ts"></script>
 </head>
 <body>
     <div class="content">
@@ -34,14 +35,22 @@
                         <i class="menu-item-last iconfont icon-down"></i>
                     </label>
                     <div class="menu-content">
-                        <label onclick="JobOnClick('kemu')">刻木匠</label>
-                        <label onclick="JobOnClick('duantie')">锻铁匠</label>
-                        <label onclick="JobOnClick('zhujia')">铸甲匠</label>
-                        <label onclick="JobOnClick('diaojin')">雕金匠</label>
-                        <label onclick="JobOnClick('zhige')">制革匠</label>
-                        <label onclick="JobOnClick('caiyi')">裁衣匠</label>
-                        <label onclick="JobOnClick('lianjin')">炼金术士</label>
-                        <label onclick="JobOnClick('chuzi')">烹调师</label>
+                        <input type="radio" name="job" id="job1">
+                        <label for="job1" onclick="JobOnClick('kemu')">刻木匠</label>
+                        <input type="radio" name="job" id="job2">
+                        <label for="job2" onclick="JobOnClick('duantie')">锻铁匠</label>
+                        <input type="radio" name="job" id="job3">
+                        <label for="job3" onclick="JobOnClick('zhujia')">铸甲匠</label>
+                        <input type="radio" name="job" id="job4">
+                        <label for="job4" onclick="JobOnClick('diaojin')">雕金匠</label>
+                        <input type="radio" name="job" id="job5">
+                        <label for="job5" onclick="JobOnClick('zhige')">制革匠</label>
+                        <input type="radio" name="job" id="job6">
+                        <label for="job6" onclick="JobOnClick('caiyi')">裁衣匠</label>
+                        <input type="radio" name="job" id="job7" checked="checked">
+                        <label for="job7" onclick="JobOnClick('lianjin')">炼金术士</label>
+                        <input type="radio" name="job" id="job8">
+                        <label for="job8" onclick="JobOnClick('chuzi')">烹调师</label>
                     </div>
                 </div>
 
@@ -54,16 +63,21 @@
                         <span>理符版本</span>
                         <i class="menu-item-last iconfont icon-down"></i>
                     </label>
-                    <div class="menu-content">
-                        <label>重生之境</label>
-                        <label>苍穹之禁城</label>
-                        <label>苍穹之禁城（大规模）</label>
-                        <label>暗影之逆袭</label>
-                        <label>晓月之终途</label>
+                    <div class="menu-content jobList">
+                        <input type="radio" name="dlc" id="dlc1">
+                        <label for="dlc1" onclick="DlcOnClick(0)">重生之境</label>
+                        <input type="radio" name="dlc" id="dlc2">
+                        <label for="dlc2" onclick="DlcOnClick(1)">苍穹之禁城</label>
+                        <input type="radio" name="dlc" id="dlc3">
+                        <label for="dlc3" onclick="DlcOnClick(2)">苍穹之禁城（大规模）</label>
+                        <input type="radio" name="dlc" id="dlc4">
+                        <label for="dlc4" onclick="DlcOnClick(3)">红莲之狂潮</label>
+                        <input type="radio" name="dlc" id="dlc5">
+                        <label for="dlc5" onclick="DlcOnClick(4)">暗影之逆袭</label>
+                        <input type="radio" name="dlc" id="dlc6" checked="checked">
+                        <label for="dlc6" onclick="DlcOnClick(5)">晓月之终途</label>
                     </div>
                 </div>
-
-                <div class="set-line"></div>
 
                 <div class="Level-interval">
                     <div class="spin-button">
@@ -78,9 +92,25 @@
                     </div>
                 </div>
 
+                <div class="set-line"></div>
+
+                <div class="Level-interval">
+                    <div class="spin-button exp">
+                        <!-- Input -->
+                        <input type="text" class="spin-button__input exp" required/>
+                        <label class="spin-button__label">当前经验值</label>
+                    </div>
+                </div>
+
             </div>
 
+            
+        </div>
+        <div class="main">
             <table class="missionList">
+                
+            </table>
+            <table class="SelectList">
                 
             </table>
         </div>
