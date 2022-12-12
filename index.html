@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入阿里的图标样式文件 -->
+    <link rel="stylesheet" href="iconfont.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="content">
+        <div class="menu-box">
+            <!-- 展示与隐藏侧边栏 开始-->
+            <input type="checkbox" id="menu-btn">
+            <label for="menu-btn"><i class="iconfont icon-yemianfanhui"></i></label>
+            <!-- 展示与隐藏侧边栏 结束-->
+            <div class="menu">
+                <!-- 侧边栏的标题 开始-->
+                <div class="menu-title">
+                    <h1>理符经验计算器</h1>
+                </div>
+                <!-- 侧边栏的标题 结束-->
+
+                <!-- 每一项导航 -->
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item1">
+                    <label for="menu-item1">
+                        <i class="menu-item-icon"></i>
+                        <span>职业</span>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <label onclick="JobOnClick('kemu')">刻木匠</label>
+                        <label onclick="JobOnClick('duantie')">锻铁匠</label>
+                        <label onclick="JobOnClick('zhujia')">铸甲匠</label>
+                        <label onclick="JobOnClick('diaojin')">雕金匠</label>
+                        <label onclick="JobOnClick('zhige')">制革匠</label>
+                        <label onclick="JobOnClick('caiyi')">裁衣匠</label>
+                        <label onclick="JobOnClick('lianjin')">炼金术士</label>
+                        <label onclick="JobOnClick('chuzi')">烹调师</label>
+                    </div>
+                </div>
+
+                
+
+                <div class="menu-item">
+                    <input type="checkbox" id="menu-item2">
+                    <label for="menu-item2">
+                        <i class="menu-item-icon"></i>
+                        <span>理符版本</span>
+                        <i class="menu-item-last iconfont icon-down"></i>
+                    </label>
+                    <div class="menu-content">
+                        <label>重生之境</label>
+                        <label>苍穹之禁城</label>
+                        <label>苍穹之禁城（大规模）</label>
+                        <label>暗影之逆袭</label>
+                        <label>晓月之终途</label>
+                    </div>
+                </div>
+
+                <div class="set-line"></div>
+
+                <div class="Level-interval">
+                    <div class="spin-button">
+                        <!-- Input -->
+                        <input type="text" class="spin-button__input" required/>
+                        <label class="spin-button__label">最小等级</label>
+                    </div>
+                    <div class="spin-button">
+                        <!-- Input -->
+                        <input type="text" class="spin-button__input" required/>
+                        <label class="spin-button__label">最高等级</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <table class="missionList">
+                
+            </table>
+        </div>
+    </div>
+</body>
+</html>
