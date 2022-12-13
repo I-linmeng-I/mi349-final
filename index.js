@@ -1,5 +1,6 @@
 var exalUrl = "/data/lianjin.xlsx"
 var dlc=5
+var levelList = new Array()
 
 window.οnlοad=load();
 
@@ -9,18 +10,18 @@ var totalGold=0
 function load(){
 
     var req = new XMLHttpRequest();
-	req.open("GET", "/data/lianjin.xlsx", true);
+	req.open("GET", "/data/level.xlsx", true);
 	req.responseType = "arraybuffer";
 	req.onload = function(e) {
 	  var workbook = XLSX.read(req.response);
-		list = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[dlc]])
+		list = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]])
 
-        
+        console.log(list[1])
 	};
 	
 	req.send();
-    
-    console.log(1)
+
+
     let list_domm = document.querySelector('.selectList')
 	list_domm.innerHTML = ''
         
@@ -34,7 +35,6 @@ function load(){
     <th class="box missionNum">数量</th>
     `
     list_domm.appendChild(itemm)
-    console.log(1)
     exalToSheet()
 }
 
