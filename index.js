@@ -154,8 +154,17 @@ function makeitem(data,dataData){
         totalCostNum++
         CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
         let GoldNum = document.querySelector('.totalGold')
-        totalGold += Number(item.cells[4].innerHTML)
-        GoldNum.innerHTML=`消耗理符数量：${totalGold}`
+        
+        if(item.cells[5].innerHTML.indexOf('（3次）')>-1){
+            totalGold += Number(item.cells[4].innerHTML)
+            totalGold += Number(item.cells[4].innerHTML)
+            totalGold += Number(item.cells[4].innerHTML)
+            GoldNum.innerHTML=`获得金币数：${totalGold}`
+        }
+        else{
+            totalGold += Number(item.cells[4].innerHTML)
+            GoldNum.innerHTML=`获得金币数：${totalGold}`
+        }
 
         item.cells[3].style.display = 'none'
         item.cells[4].style.display = 'none'
@@ -185,8 +194,16 @@ function makeitem(data,dataData){
             totalCostNum--
             CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
             let GoldNum = document.querySelector('.totalGold')
-            totalGold -= Number(this.cells[4].innerHTML)
-            GoldNum.innerHTML=`消耗理符数量：${totalGold}`
+            if(item.cells[5].innerHTML.indexOf('（3次）')>-1){
+                totalGold -= Number(item.cells[4].innerHTML)
+                totalGold -= Number(item.cells[4].innerHTML)
+                totalGold -= Number(item.cells[4].innerHTML)
+                GoldNum.innerHTML=`获得金币数：${totalGold}`
+            }
+            else{
+                totalGold -= Number(item.cells[4].innerHTML)
+                GoldNum.innerHTML=`获得金币数：${totalGold}`
+            }
         })
 
         list_domm.appendChild(item)
