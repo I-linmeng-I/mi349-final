@@ -1,4 +1,4 @@
-var exalUrl = "http://127.0.0.1:5500/data/lianjin.xlsx"
+var exalUrl = "https://rainbow-unicorn-01ab0e.netlify.app/data/lianjin.xlsx"
 var dlc=5
 
 window.οnlοad=load();
@@ -7,6 +7,18 @@ var totalCostNum=0
 var totalGold=0
 
 function load(){
+
+    var req = new XMLHttpRequest();
+	req.open("GET", "https://rainbow-unicorn-01ab0e.netlify.app/lianjin.xlsx", true);
+	req.responseType = "arraybuffer";
+	req.onload = function(e) {
+	  var workbook = XLSX.read(req.response);
+		list = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[dlc]])
+
+        
+	};
+	
+	req.send();
     
     console.log(1)
     let list_domm = document.querySelector('.selectList')
