@@ -265,6 +265,12 @@ h1{
     color: var(--font-color-mi-hover);
 }
 
+.missionList .item>td{
+    -moz-user-select:none;
+    -webkit-user-select:none;
+    user-select:none;  
+}
+
 .item .box{
     flex-shrink: 0;
     flex: 1;
@@ -313,6 +319,11 @@ h1{
     text-align: center;display: flex; justify-content: space-around;
     display: flex;
     align-items: baseline;
+}
+
+.selectList .item:hover{
+    background-color: var(--color-bg-mi-hover);
+    color: var(--font-color-mi-hover);
 }
 
 .result{

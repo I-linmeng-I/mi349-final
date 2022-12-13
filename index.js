@@ -2,6 +2,10 @@ var exalUrl = "http://127.0.0.1:5500/data/lianjin.xlsx"
 var dlc=5
 
 window.οnlοad=load();
+
+var totalCostNum=0
+var totalGold=0
+
 function load(){
     
     console.log(1)
@@ -25,6 +29,28 @@ function load(){
 function JobOnClick(job)
 {
     exalUrl = `http://127.0.0.1:5500/data/${job}.xlsx`;
+
+    let list_domm = document.querySelector('.selectList')
+	list_domm.innerHTML = ''
+        
+    let itemm = document.createElement('tr')
+	itemm.className = 'item'
+    itemm.innerHTML += `
+    <th class="box level">等级</th>
+    <th class="name">理符名称</th>
+    <th class="place">提交位置</th>
+    <th class="box item">提交道具</th>
+    <th class="box missionNum">数量</th>
+    `
+    list_domm.appendChild(itemm)
+    console.log(1)
+
+    let CostNum = document.querySelector('.totalCost')
+    totalCostNum = 0
+    CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
+    let GoldNum = document.querySelector('.totalGold')
+    totalGold =0
+    GoldNum.innerHTML=`消耗理符数量：${totalGold}`
 	
     exalToSheet()
 }
@@ -112,8 +138,15 @@ function makeitem(data,dataData){
 
         item.innerHTML +=  this.innerHTML
 
+        let CostNum = document.querySelector('.totalCost')
+        totalCostNum++
+        CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
+        let GoldNum = document.querySelector('.totalGold')
+        totalGold += Number(item.cells[4].innerHTML)
+        GoldNum.innerHTML=`消耗理符数量：${totalGold}`
+
         item.cells[3].remove()
-        item.cells[3].remove()
+        item.cells[3].style.display = 'none'
 
 
         item.innerHTML += '<th class="box missionNum">1</th>'
@@ -123,10 +156,26 @@ function makeitem(data,dataData){
         for(let i=0;i<list_domm.rows.length;i++){
             if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
             {
-                list_domm.rows[i].cells[4].innerHTML++
+                list_domm.rows[i].cells[5].innerHTML++
                 return
             }
         }
+
+        item.addEventListener('click',function(e){
+            if(this.cells[5].innerHTML>1){
+                this.cells[5].innerHTML--
+                
+            }
+            else{
+                this.remove()
+            }
+            let CostNum = document.querySelector('.totalCost')
+            totalCostNum--
+            CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
+            let GoldNum = document.querySelector('.totalGold')
+            totalGold -= Number(this.cells[3].innerHTML)
+            GoldNum.innerHTML=`消耗理符数量：${totalGold}`
+        })
 
         list_domm.appendChild(item)
     },false)
@@ -165,6 +214,54 @@ function addTHZhujia(data){
     let item = document.createElement('tr')
     item.className = 'item'
     
+    item.addEventListener('click',function(e){
+        let item = document.createElement('tr')
+        item.className = 'item'
+
+        item.innerHTML +=  this.innerHTML
+
+        let CostNum = document.querySelector('.totalCost')
+        totalCostNum++
+        CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
+        let GoldNum = document.querySelector('.totalGold')
+        totalGold += Number(item.cells[4].innerHTML)
+        GoldNum.innerHTML=`消耗理符数量：${totalGold}`
+
+        item.cells[3].remove()
+        item.cells[3].style.display = 'none'
+
+
+        item.innerHTML += '<th class="box missionNum">1</th>'
+
+        let list_domm = document.querySelector('.selectList')
+
+        for(let i=0;i<list_domm.rows.length;i++){
+            if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
+            {
+                list_domm.rows[i].cells[5].innerHTML++
+                return
+            }
+        }
+
+        item.addEventListener('click',function(e){
+            if(this.cells[5].innerHTML>1){
+                this.cells[5].innerHTML--
+                
+            }
+            else{
+                this.remove()
+            }
+            let CostNum = document.querySelector('.totalCost')
+            totalCostNum--
+            CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
+            let GoldNum = document.querySelector('.totalGold')
+            totalGold -= Number(this.cells[3].innerHTML)
+            GoldNum.innerHTML=`消耗理符数量：${totalGold}`
+        })
+
+        list_domm.appendChild(item)
+    },false)
+
     var level = ""
     var missionName = ""
     for(let i=0;i<dataData[0].length;i++){
@@ -198,6 +295,54 @@ function addTDZhujia(data){
     let item = document.createElement('tr')
     item.className = 'item'
     
+    item.addEventListener('click',function(e){
+        let item = document.createElement('tr')
+        item.className = 'item'
+
+        item.innerHTML +=  this.innerHTML
+
+        let CostNum = document.querySelector('.totalCost')
+        totalCostNum++
+        CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
+        let GoldNum = document.querySelector('.totalGold')
+        totalGold += Number(item.cells[4].innerHTML)
+        GoldNum.innerHTML=`消耗理符数量：${totalGold}`
+
+        item.cells[3].remove()
+        item.cells[3].style.display = 'none'
+
+
+        item.innerHTML += '<th class="box missionNum">1</th>'
+
+        let list_domm = document.querySelector('.selectList')
+
+        for(let i=0;i<list_domm.rows.length;i++){
+            if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
+            {
+                list_domm.rows[i].cells[5].innerHTML++
+                return
+            }
+        }
+
+        item.addEventListener('click',function(e){
+            if(this.cells[5].innerHTML>1){
+                this.cells[5].innerHTML--
+                
+            }
+            else{
+                this.remove()
+            }
+            let CostNum = document.querySelector('.totalCost')
+            totalCostNum--
+            CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
+            let GoldNum = document.querySelector('.totalGold')
+            totalGold -= Number(this.cells[3].innerHTML)
+            GoldNum.innerHTML=`消耗理符数量：${totalGold}`
+        })
+
+        list_domm.appendChild(item)
+    },false)
+
     var level = ""
     var missionName = ""
     for(let i=0;i<dataData[0].length;i++){
