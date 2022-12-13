@@ -298,6 +298,7 @@ h1{
     height: 45%;
     margin-top: 2%;
     display: flex;
+    
 }
 
 .resultList{
@@ -307,7 +308,7 @@ h1{
 
 .selectList{
     top: 5%;
-    margin-left: 3%;
+    margin-left: 4%;
     width: 90%;
     height: 100%;
     box-shadow: 0px 0px 2px 0px #000;overflow-y: auto;display: block;
@@ -330,6 +331,7 @@ h1{
     width: 50%;
     height: 100%;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .result>div{
@@ -339,4 +341,42 @@ h1{
     height: 40%;
     width: 50%;
     margin-top: 5%;
+}
+
+.progress-box{
+    flex: 2;
+}
+
+.progress-bar{
+    top: 50%;
+    width: 90%;
+    height: 5px;
+    border-radius: 5px;
+    border: 2px solid rgb(58, 74, 52);
+    background-color: rgb(66, 35, 0);
+}
+
+.inside-per{
+    width: 0%;
+    height: 4px;
+    margin-top: 1px;
+    margin-left: 1px;
+    border-top-left-radius:38px;
+    border-bottom-left-radius: 38px;
+    background-color: rgb(252, 225, 161);
+    
+}
+
+.inside-text{
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+}
+
+.afterExp{
+    flex: 5;
+}
+
+.afterLevel{
+    flex: 1;
 }

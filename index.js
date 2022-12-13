@@ -145,8 +145,8 @@ function makeitem(data,dataData){
         totalGold += Number(item.cells[4].innerHTML)
         GoldNum.innerHTML=`消耗理符数量：${totalGold}`
 
-        item.cells[3].remove()
         item.cells[3].style.display = 'none'
+        item.cells[4].style.display = 'none'
 
 
         item.innerHTML += '<th class="box missionNum">1</th>'
@@ -156,14 +156,14 @@ function makeitem(data,dataData){
         for(let i=0;i<list_domm.rows.length;i++){
             if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
             {
-                list_domm.rows[i].cells[5].innerHTML++
+                list_domm.rows[i].cells[6].innerHTML++
                 return
             }
         }
 
         item.addEventListener('click',function(e){
-            if(this.cells[5].innerHTML>1){
-                this.cells[5].innerHTML--
+            if(this.cells[6].innerHTML>1){
+                this.cells[6].innerHTML--
                 
             }
             else{
@@ -173,7 +173,7 @@ function makeitem(data,dataData){
             totalCostNum--
             CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
             let GoldNum = document.querySelector('.totalGold')
-            totalGold -= Number(this.cells[3].innerHTML)
+            totalGold -= Number(this.cells[4].innerHTML)
             GoldNum.innerHTML=`消耗理符数量：${totalGold}`
         })
 
@@ -227,8 +227,8 @@ function addTHZhujia(data){
         totalGold += Number(item.cells[4].innerHTML)
         GoldNum.innerHTML=`消耗理符数量：${totalGold}`
 
-        item.cells[3].remove()
         item.cells[3].style.display = 'none'
+        item.cells[4].style.display = 'none'
 
 
         item.innerHTML += '<th class="box missionNum">1</th>'
@@ -238,14 +238,14 @@ function addTHZhujia(data){
         for(let i=0;i<list_domm.rows.length;i++){
             if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
             {
-                list_domm.rows[i].cells[5].innerHTML++
+                list_domm.rows[i].cells[6].innerHTML++
                 return
             }
         }
 
         item.addEventListener('click',function(e){
-            if(this.cells[5].innerHTML>1){
-                this.cells[5].innerHTML--
+            if(this.cells[6].innerHTML>1){
+                this.cells[6].innerHTML--
                 
             }
             else{
@@ -255,7 +255,7 @@ function addTHZhujia(data){
             totalCostNum--
             CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
             let GoldNum = document.querySelector('.totalGold')
-            totalGold -= Number(this.cells[3].innerHTML)
+            totalGold -= Number(this.cells[4].innerHTML)
             GoldNum.innerHTML=`消耗理符数量：${totalGold}`
         })
 
@@ -308,8 +308,8 @@ function addTDZhujia(data){
         totalGold += Number(item.cells[4].innerHTML)
         GoldNum.innerHTML=`消耗理符数量：${totalGold}`
 
-        item.cells[3].remove()
         item.cells[3].style.display = 'none'
+        item.cells[4].style.display = 'none'
 
 
         item.innerHTML += '<th class="box missionNum">1</th>'
@@ -319,14 +319,14 @@ function addTDZhujia(data){
         for(let i=0;i<list_domm.rows.length;i++){
             if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
             {
-                list_domm.rows[i].cells[5].innerHTML++
+                list_domm.rows[i].cells[6].innerHTML++
                 return
             }
         }
 
         item.addEventListener('click',function(e){
-            if(this.cells[5].innerHTML>1){
-                this.cells[5].innerHTML--
+            if(this.cells[6].innerHTML>1){
+                this.cells[6].innerHTML--
                 
             }
             else{
@@ -336,7 +336,7 @@ function addTDZhujia(data){
             totalCostNum--
             CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
             let GoldNum = document.querySelector('.totalGold')
-            totalGold -= Number(this.cells[3].innerHTML)
+            totalGold -= Number(this.cells[4].innerHTML)
             GoldNum.innerHTML=`消耗理符数量：${totalGold}`
         })
 
