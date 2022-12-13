@@ -8,9 +8,8 @@
     <!-- 导入阿里的图标样式文件 -->
     <link rel="stylesheet" href="iconfont.css">
     <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
+    
     <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-    <script type="module" src="index.ts"></script>
 </head>
 <body>
     <div class="content">
@@ -79,25 +78,12 @@
                     </div>
                 </div>
 
-                <div class="Level-interval">
-                    <div class="spin-button">
-                        <!-- Input -->
-                        <input type="text" class="spin-button__input" required/>
-                        <label class="spin-button__label">最小等级</label>
-                    </div>
-                    <div class="spin-button">
-                        <!-- Input -->
-                        <input type="text" class="spin-button__input" required/>
-                        <label class="spin-button__label">最高等级</label>
-                    </div>
-                </div>
-
                 <div class="set-line"></div>
 
                 <div class="Level-interval">
-                    <div class="spin-button exp">
+                    <div class="spin-button CurrentExp">
                         <!-- Input -->
-                        <input type="text" class="spin-button__input exp" required/>
+                        <input type="text" class="spin-button__input CurrentExp" required/>
                         <label class="spin-button__label">当前经验值</label>
                     </div>
                 </div>
@@ -107,13 +93,25 @@
             
         </div>
         <div class="main">
+
             <table class="missionList">
                 
             </table>
-            <table class="SelectList">
-                
-            </table>
+
+            <div class="resultBox">
+                <div class="resultList">
+
+                    <table class="selectList">
+                        
+                    </table>
+
+                </div>
+                <div class="result">
+                    
+                </div>
+            </div>
         </div>
     </div>
 </body>
+<script src="index.js"></script>
 </html>

@@ -257,6 +257,7 @@ h1{
     text-align: center;display: flex; justify-content: space-around;
     display: flex;
     align-items: baseline;
+    justify-content: space-around;
 }
 
 .missionList .item:hover{
@@ -264,34 +265,58 @@ h1{
     color: var(--font-color-mi-hover);
 }
 
-.missionList .item .box{
+.item .box{
     flex-shrink: 0;
     flex: 1;
 }
 
-.missionList .item .box.level{
-    flex-grow: 1;
+.name{
+    flex: 3;
 }
 
-.missionList .item .box.name{
-    flex-grow: 2;
+.place{
+    flex: 2;
 }
+
 
 .main{
     width: 100%;
 }
 
-.exp{
+.CurrentExp{
     width: 90%;
 }
 
+.resultBox{
+    width: 100%;
+    height: 45%;
+    margin-top: 2%;
+    display: flex;
+}
 
-.SelectList{
-    position: relative;
+.resultList{
+    width: 50%;
+    height: 100%;
+}
+
+.selectList{
     top: 5%;
-    left: 2%;
-    width: 95%;
-    height: 30%;
+    margin-left: 3%;
+    width: 90%;
+    height: 100%;
     box-shadow: 0px 0px 2px 0px #000;overflow-y: auto;display: block;
     
+}
+
+.selectList .item{
+    margin-top: 5px;	
+    text-align: center;display: flex; justify-content: space-around;
+    display: flex;
+    align-items: baseline;
+}
+
+.result{
+    background-color: #000;
+    width: 50%;
+    height: 100%;
 }
