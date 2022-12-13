@@ -1,4 +1,4 @@
-var exalUrl = "https://rainbow-unicorn-01ab0e.netlify.app/data/lianjin.xlsx"
+var exalUrl = "/data/lianjin.xlsx"
 var dlc=5
 
 window.οnlοad=load();
@@ -9,7 +9,7 @@ var totalGold=0
 function load(){
 
     var req = new XMLHttpRequest();
-	req.open("GET", "https://rainbow-unicorn-01ab0e.netlify.app/lianjin.xlsx", true);
+	req.open("GET", "/data/lianjin.xlsx", true);
 	req.responseType = "arraybuffer";
 	req.onload = function(e) {
 	  var workbook = XLSX.read(req.response);
@@ -40,7 +40,7 @@ function load(){
 
 function JobOnClick(job)
 {
-    exalUrl = `http://127.0.0.1:5500/data/${job}.xlsx`;
+    exalUrl = `/data/${job}.xlsx`;
 
     let list_domm = document.querySelector('.selectList')
 	list_domm.innerHTML = ''
@@ -101,7 +101,7 @@ function exalToSheet(){
         list_dom.appendChild(item)
 
 
-		if(exalUrl != `http://127.0.0.1:5500/data/duantie.xlsx`){
+		if(exalUrl != `/data/duantie.xlsx`){
             list_dom.appendChild(addTH((list[0])))
 		    list.map(res=>{
 			    list_dom.appendChild(addTD(res))
