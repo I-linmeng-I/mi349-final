@@ -1,6 +1,8 @@
 var exalUrl = "/data/lianjin.xlsx"
 var dlc=5
 var levelList = new Array()
+var currentLevel
+var currentExp
 
 window.οnlοad=load();
 
@@ -22,19 +24,9 @@ function load(){
 	req.send();
 
 
-    let list_domm = document.querySelector('.selectList')
+    let list_domm = document.querySelector('.selectListBody')
 	list_domm.innerHTML = ''
-        
-    let itemm = document.createElement('tr')
-	itemm.className = 'item'
-    itemm.innerHTML += `
-    <th class="box level">等级</th>
-    <th class="name">理符名称</th>
-    <th class="place">提交位置</th>
-    <th class="box item">提交道具</th>
-    <th class="box missionNum">数量</th>
-    `
-    list_domm.appendChild(itemm)
+    
     exalToSheet()
 }
 
@@ -42,20 +34,9 @@ function JobOnClick(job)
 {
     exalUrl = `/data/${job}.xlsx`;
 
-    let list_domm = document.querySelector('.selectList')
-	list_domm.innerHTML = ''
-        
-    let itemm = document.createElement('tr')
-	itemm.className = 'item'
-    itemm.innerHTML += `
-    <th class="box level">等级</th>
-    <th class="name">理符名称</th>
-    <th class="place">提交位置</th>
-    <th class="box item">提交道具</th>
-    <th class="box missionNum">数量</th>
-    `
-    list_domm.appendChild(itemm)
-    console.log(1)
+    let list_dom = document.querySelector('.selectListBody')
+	list_dom.innerHTML = ''
+
 
     let CostNum = document.querySelector('.totalCost')
     totalCostNum = 0
@@ -85,20 +66,9 @@ function exalToSheet(){
 		list = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[dlc]])
 
 
-		let list_dom = document.querySelector('.missionList')
+		let list_dom = document.querySelector('.missionListBody')
 		list_dom.innerHTML = ''
         
-        let item = document.createElement('tr')
-		item.className = 'item'
-        item.innerHTML += `
-        <th class="box level">等级</th>
-        <th class="name">理符名称</th>
-        <th class="place">提交位置</th>
-        <th class="box exp">经验</th>
-        <th class="box gold">奖励金币</th>
-        <th class="box item">提交道具</th>
-        `
-        list_dom.appendChild(item)
 
 
 		if(exalUrl != `/data/duantie.xlsx`){
@@ -172,7 +142,7 @@ function makeitem(data,dataData){
 
         item.innerHTML += '<th class="box missionNum">1</th>'
 
-        let list_domm = document.querySelector('.selectList')
+        let list_domm = document.querySelector('.selectListBody')
 
         for(let i=0;i<list_domm.rows.length;i++){
             if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
@@ -262,7 +232,7 @@ function addTHZhujia(data){
 
         item.innerHTML += '<th class="box missionNum">1</th>'
 
-        let list_domm = document.querySelector('.selectList')
+        let list_domm = document.querySelector('.selectListBody')
 
         for(let i=0;i<list_domm.rows.length;i++){
             if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
@@ -343,7 +313,7 @@ function addTDZhujia(data){
 
         item.innerHTML += '<th class="box missionNum">1</th>'
 
-        let list_domm = document.querySelector('.selectList')
+        let list_domm = document.querySelector('.selectListBody')
 
         for(let i=0;i<list_domm.rows.length;i++){
             if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)

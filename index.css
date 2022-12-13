@@ -35,6 +35,9 @@ h1{
     background-color: #e7e7e7;
     display: flex;
 }
+body{
+    overflow: hidden;
+}
 
 .menu-box {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -212,7 +215,8 @@ h1{
     padding: 0.5rem;
     width: 80px;
     outline: none;
-
+    margin-left: 2px;
+    box-shadow: 0px 0px 5px 0px #000;overflow-y: auto;display: block;
     
 }
 
@@ -242,17 +246,48 @@ h1{
     gap: 15px;
 }
 
+.missionListBox{
+    height: 450px;
+}
+
 .missionList{
     position: relative;
     top: 2%;
     left: 2%;
     width: 95%;
-    height: 50%;
-    box-shadow: 0px 0px 2px 0px #000;overflow-y: auto;display: block;
-    
+    height: 100%;
+    box-shadow: 0px 0px 5px 0px #000;overflow-y: auto;display: block;
+    border-radius: 0.25rem;
+    overflow: hidden;
 }
 
-.missionList .item{
+.missionList::-webkit-scrollbar{
+    width: 0;
+}
+
+.missionList .thead{    
+    width: 100%;
+    background-color:#e7e7e7 ;
+    box-shadow: 0px 0px 0px 0px #000;overflow-y: auto;display: block;
+
+}
+
+.missionList .thead .item{
+    text-align: center;display: flex; justify-content: space-around;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+}
+
+
+.missionListBody{
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 0px 0px #000;overflow-y: auto;display: block;
+    table-layout: fixed;
+}
+
+.missionListBody .item{
     margin-top: 5px;	
     text-align: center;display: flex; justify-content: space-around;
     display: flex;
@@ -260,12 +295,12 @@ h1{
     justify-content: space-around;
 }
 
-.missionList .item:hover{
+.missionListBody .item:hover{
     background-color: var(--color-bg-mi-hover);
     color: var(--font-color-mi-hover);
 }
 
-.missionList .item>td{
+.missionListBody .item>td{
     -moz-user-select:none;
     -webkit-user-select:none;
     user-select:none;  
@@ -303,7 +338,7 @@ h1{
 
 .resultList{
     width: 50%;
-    height: 100%;
+    height: 410px;
 }
 
 .selectList{
@@ -311,21 +346,55 @@ h1{
     margin-left: 4%;
     width: 90%;
     height: 100%;
-    box-shadow: 0px 0px 2px 0px #000;overflow-y: auto;display: block;
-    
+    box-shadow: 0px 0px 5px 0px #000;overflow-y: auto;display: block;
+    border-radius: 0.25rem;
+    overflow: hidden;
 }
 
-.selectList .item{
+.selectList::-webkit-scrollbar{
+    width: 0;
+}
+
+.selectList .thead{    
+    width: 100%;
+    background-color:#e7e7e7 ;
+    box-shadow: 0px 0px 0px 0px #000;overflow-y: auto;display: block;
+
+}
+
+.selectList .thead .item{
+    text-align: center;display: flex; justify-content: space-around;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+}
+
+.selectListBody{
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 0px 0px #000;overflow-y: auto;display: block;
+    table-layout: fixed;
+}
+
+.selectListBody .item{
     margin-top: 5px;	
     text-align: center;display: flex; justify-content: space-around;
     display: flex;
     align-items: baseline;
 }
 
-.selectList .item:hover{
+
+.selectListBody .item:hover{
     background-color: var(--color-bg-mi-hover);
     color: var(--font-color-mi-hover);
 }
+
+.selectListBody .item>td{
+    -moz-user-select:none;
+    -webkit-user-select:none;
+    user-select:none;  
+}
+
 
 .result{
     width: 50%;
@@ -380,3 +449,21 @@ h1{
 .afterLevel{
     flex: 1;
 }
+
+.List::-webkit-scrollbar {
+    /*滚动条宽*/
+    width: 4px;
+  }
+
+  .List::-webkit-scrollbar-thumb {
+    /*正在滑动的小块*/
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0);
+  }
+
+  .List::-webkit-scrollbar-track {
+    /*滚动内部轨道*/
+    box-shadow: inset 0 0 5px rgba(204, 91, 91, 0.2);
+    background: rgb(159, 159, 163);
+    border-radius: 10px;
+  }

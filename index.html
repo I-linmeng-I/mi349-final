@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>理符计算器</title>
     <!-- 导入阿里的图标样式文件 -->
     <link rel="stylesheet" href="iconfont.css">
     <link rel="stylesheet" href="index.css">
@@ -81,10 +81,15 @@
                 <div class="set-line"></div>
 
                 <div class="Level-interval">
+                    <div class="spin-button CurrentLevel">
+                        <!-- Input -->
+                        <input type="text" class="spin-button__input CurrentLevel" required/>
+                        <label class="spin-button__label">当前等级</label>
+                    </div>
                     <div class="spin-button CurrentExp">
                         <!-- Input -->
                         <input type="text" class="spin-button__input CurrentExp" required/>
-                        <label class="spin-button__label">当前职业经验值</label>
+                        <label class="spin-button__label">当前经验值</label>
                     </div>
                 </div>
 
@@ -94,15 +99,36 @@
         </div>
         <div class="main">
 
-            <table class="missionList">
-                
-            </table>
+            <div class="missionListBox">
+                <table class="missionList">
+                    <thead class="thead">
+                        <tr class="item">
+                            <th class="box level">等级</th>
+                            <th class="name">理符名称</th>
+                            <th class="place">提交位置</th>
+                            <th class="box exp">经验</th>
+                            <th class="box gold">奖励金币</th>
+                            <th class="box handItem">提交道具</th>
+                        </tr>
+                    </thead>
+                    <tbody class="missionListBody List"></tbody>
+                </table>
+            </div>
 
             <div class="resultBox">
                 <div class="resultList">
 
                     <table class="selectList">
-                        
+                        <thead class="thead">
+                            <tr class="item">
+                                <th class="box level">等级</th>
+                                <th class="name">理符名称</th>
+                                <th class="place">提交位置</th>
+                                <th class="box handItem">提交道具</th>
+                                <th class="box missionNum">数量</th>
+                            </tr>
+                        </thead>
+                        <tbody class="selectListBody List"></tbody>
                     </table>
 
                 </div>
@@ -117,8 +143,8 @@
                         <div class="progress-bar">
                             <div class="inside-per"></div>
                             <div class="inside-text">
-                                <div class="afterLevel">等级:0</div>
-                                <div class="afterExp">经验值:0/0</div>
+                                <div class="afterLevel">等级:1</div>
+                                <div class="afterExp">经验值:0/300</div>
                                 <div class="afterPer">0%</div>
                             </div>
                         </div>
