@@ -1,8 +1,8 @@
 var exalUrl = "/data/lianjin.xlsx"
 var dlc=5
 var levelList = new Array()
-var currentLevel
-var currentExp
+var currentLevel = 1
+var currentExp =0
 
 window.οnlοad=load();
 
@@ -18,7 +18,13 @@ function load(){
 	  var workbook = XLSX.read(req.response);
 		list = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]])
 
-        console.log(list[1])
+        list.map(res=>{
+            var dataData=new Array()
+            for(let sheet in res){
+                dataData.push(res[sheet])
+            }
+            levelList.push(dataData)
+        })
 	};
 	
 	req.send();
@@ -43,7 +49,17 @@ function JobOnClick(job)
     CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
     let GoldNum = document.querySelector('.totalGold')
     totalGold =0
-    GoldNum.innerHTML=`消耗理符数量：${totalGold}`
+    GoldNum.innerHTML=`获得金币数：${totalGold}`
+
+    let levelNum = document.querySelector('.afterLevel')
+    currentLevel =1
+    levelNum.innerHTML=`等级:1`
+    let expNum = document.querySelector('.afterExp')
+    currentExp =0
+    expNum.innerHTML=`经验值:0/300`
+    let perNum = document.querySelector('.afterPer')
+    perNum.innerHTML=`0%`
+    document.querySelector('.inside-per').style.width="0%"
 	
     exalToSheet()
 }
@@ -83,11 +99,59 @@ function exalToSheet(){
 			    list_dom.appendChild(addTDZhujia(res))
 		    })
         }
+
+        OnHqChange()
 	};
 	
 	req.send();
 }
 
+function OnHqChange(){
+    let HQChecked = !document.getElementById("HQCheck").checked
+    let list_dom = document.querySelector(".missionListBody")
+    
+
+    let list_domm = document.querySelector(".selectListBody")
+
+    if(HQChecked){
+        for(let i=0;i<list_dom.rows.length;i++){
+            let exp = Number(list_dom.rows[i].cells[3].innerHTML)
+            list_dom.rows[i].cells[3].innerHTML = exp*2
+    
+    
+            let gold = Number(list_dom.rows[i].cells[4].innerHTML)
+            list_dom.rows[i].cells[4].innerHTML = gold*2
+        }
+        for(let i=0;i<list_domm.rows.length;i++){
+            let exp = Number(list_domm.rows[i].cells[3].innerHTML)
+            list_domm.rows[i].cells[3].innerHTML = exp*2
+    
+            
+            let gold = Number(list_domm.rows[i].cells[4].innerHTML)
+            list_domm.rows[i].cells[4].innerHTML = gold*2
+        }
+    }
+    else{
+        for(let i=0;i<list_dom.rows.length;i++){
+            let exp = Number(list_dom.rows[i].cells[3].innerHTML)
+            list_dom.rows[i].cells[3].innerHTML = exp/2
+    
+    
+            let gold = Number(list_dom.rows[i].cells[4].innerHTML)
+            list_dom.rows[i].cells[4].innerHTML = gold/2
+        }
+        for(let i=0;i<list_domm.rows.length;i++){
+            let exp = Number(list_domm.rows[i].cells[3].innerHTML)
+            list_domm.rows[i].cells[3].innerHTML = exp/2
+    
+            
+            let gold = Number(list_domm.rows[i].cells[4].innerHTML)
+            list_domm.rows[i].cells[4].innerHTML = gold/2
+        }
+    }
+
+    calculateResult()
+}
 
 function addTH(data){
 
@@ -120,22 +184,6 @@ function makeitem(data,dataData){
 
         item.innerHTML +=  this.innerHTML
 
-        let CostNum = document.querySelector('.totalCost')
-        totalCostNum++
-        CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
-        let GoldNum = document.querySelector('.totalGold')
-        
-        if(item.cells[5].innerHTML.indexOf('（3次）')>-1){
-            totalGold += Number(item.cells[4].innerHTML)
-            totalGold += Number(item.cells[4].innerHTML)
-            totalGold += Number(item.cells[4].innerHTML)
-            GoldNum.innerHTML=`获得金币数：${totalGold}`
-        }
-        else{
-            totalGold += Number(item.cells[4].innerHTML)
-            GoldNum.innerHTML=`获得金币数：${totalGold}`
-        }
-
         item.cells[3].style.display = 'none'
         item.cells[4].style.display = 'none'
 
@@ -160,23 +208,11 @@ function makeitem(data,dataData){
             else{
                 this.remove()
             }
-            let CostNum = document.querySelector('.totalCost')
-            totalCostNum--
-            CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
-            let GoldNum = document.querySelector('.totalGold')
-            if(item.cells[5].innerHTML.indexOf('（3次）')>-1){
-                totalGold -= Number(item.cells[4].innerHTML)
-                totalGold -= Number(item.cells[4].innerHTML)
-                totalGold -= Number(item.cells[4].innerHTML)
-                GoldNum.innerHTML=`获得金币数：${totalGold}`
-            }
-            else{
-                totalGold -= Number(item.cells[4].innerHTML)
-                GoldNum.innerHTML=`获得金币数：${totalGold}`
-            }
+            calculateResult()
         })
 
         list_domm.appendChild(item)
+        calculateResult()
     },false)
 
     var level = ""
@@ -219,13 +255,6 @@ function addTHZhujia(data){
 
         item.innerHTML +=  this.innerHTML
 
-        let CostNum = document.querySelector('.totalCost')
-        totalCostNum++
-        CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
-        let GoldNum = document.querySelector('.totalGold')
-        totalGold += Number(item.cells[4].innerHTML)
-        GoldNum.innerHTML=`消耗理符数量：${totalGold}`
-
         item.cells[3].style.display = 'none'
         item.cells[4].style.display = 'none'
 
@@ -250,15 +279,11 @@ function addTHZhujia(data){
             else{
                 this.remove()
             }
-            let CostNum = document.querySelector('.totalCost')
-            totalCostNum--
-            CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
-            let GoldNum = document.querySelector('.totalGold')
-            totalGold -= Number(this.cells[4].innerHTML)
-            GoldNum.innerHTML=`消耗理符数量：${totalGold}`
+            calculateResult()
         })
 
         list_domm.appendChild(item)
+        calculateResult()
     },false)
 
     var level = ""
@@ -300,13 +325,6 @@ function addTDZhujia(data){
 
         item.innerHTML +=  this.innerHTML
 
-        let CostNum = document.querySelector('.totalCost')
-        totalCostNum++
-        CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
-        let GoldNum = document.querySelector('.totalGold')
-        totalGold += Number(item.cells[4].innerHTML)
-        GoldNum.innerHTML=`消耗理符数量：${totalGold}`
-
         item.cells[3].style.display = 'none'
         item.cells[4].style.display = 'none'
 
@@ -331,15 +349,11 @@ function addTDZhujia(data){
             else{
                 this.remove()
             }
-            let CostNum = document.querySelector('.totalCost')
-            totalCostNum--
-            CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
-            let GoldNum = document.querySelector('.totalGold')
-            totalGold -= Number(this.cells[4].innerHTML)
-            GoldNum.innerHTML=`消耗理符数量：${totalGold}`
+            calculateResult()
         })
 
         list_domm.appendChild(item)
+        calculateResult()
     },false)
 
     var level = ""
@@ -366,3 +380,59 @@ function addTDZhujia(data){
     return item
 }
 
+function calculateResult(){
+    let exp =0
+
+    currentLevel =1
+    totalGold =0 
+    totalCostNum =0
+    
+    let list_domm = document.querySelector(".selectListBody")
+
+    for(let i=0;i<list_domm.rows.length;i++){
+        let item = list_domm.rows[i]
+        
+        exp += Number(item.cells[3].innerHTML)
+        
+    
+        totalCostNum++
+        
+        
+        if(item.cells[5].innerHTML.indexOf('（3次）')>-1){
+            totalGold += Number(item.cells[4].innerHTML)
+            totalGold += Number(item.cells[4].innerHTML)
+            totalGold += Number(item.cells[4].innerHTML)
+        }
+        else{
+            totalGold += Number(item.cells[4].innerHTML)
+        }
+    }
+    for(let i=currentLevel-1;i<levelList.length;i++){
+        if(exp>=levelList[i][1]){
+            exp -= levelList[i][1]
+            currentLevel++ 
+        }
+        else{
+            break
+        }
+    }
+
+    let PerNum = document.querySelector('.afterPer')
+    let per =exp/levelList[currentLevel-1][1]*100
+    let perbar = document.querySelector('.inside-per')
+    perbar.style.width = `${per}%`
+    PerNum.innerHTML = `${per.toFixed(2)}%`
+
+    let LevelNum = document.querySelector('.afterLevel')
+    LevelNum.innerHTML = `等级:${currentLevel}`
+
+    let ExpNum = document.querySelector('.afterExp')
+    ExpNum.innerHTML = `经验值:${exp}/${levelList[currentLevel-1][1]}`
+
+    let CostNum = document.querySelector('.totalCost')
+    CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
+
+    let GoldNum = document.querySelector('.totalGold')
+    GoldNum.innerHTML=`获得金币数：${totalGold}`
+
+}

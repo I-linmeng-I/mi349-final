@@ -51,7 +51,7 @@ body{
     background-color: var(--color-menu-bg);
 }
 
-.menu-box input[type='checkbox'] {
+.menu-box input[type='checkbox']:not(.HQCheck) {
     display: none;
 }
 
@@ -94,6 +94,7 @@ body{
     width: 220px;
     min-height: 100%;
     cursor: pointer;
+    
     overflow: hidden;
     transition: width var(--transition-menu-time);
     color: var(--font-color-mi);
@@ -467,3 +468,53 @@ body{
     background: rgb(159, 159, 163);
     border-radius: 10px;
   }
+
+.HQ{
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.HQ>div{
+    position: absolute;
+    left: 70px;
+}
+
+.HQCheck{
+    position: absolute;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.HQCheck::before{
+    content: "";
+    position: absolute;
+    width: 50px;
+    top: 3px;
+    height: 20px;
+    background: rgb(39, 39, 39);
+    border-radius: 40px;
+    box-shadow: 0 0 3px black;
+}
+
+.HQCheck::after{
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: white;
+    top: 5px;
+    left: 2px;
+    border-radius: 50%;
+    box-shadow: 0 0 3px gray;
+    transition: 0.2s cubic-bezier(.53,0,.46,1);
+}
+
+.HQCheck:checked::before{
+    background: gray;
+}
+
+.HQCheck:checked::after{
+    left: 32px;
+}
