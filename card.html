@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="card.css">
+    <title>Card Layout</title>
+</head>
+<body class="wrapper">
+    
+    <div class="card">
+        <img class="avatar" id="lmeng-avatar" src="未标题-3-表情包.png" alt="me">
+        <h1>林蒙</h1>
+        <h2>鱼跃此时海，花开彼岸天</h2>
+        <ul class="contacts">
+            <li><a href="https://github.com/I-linmeng-I"><img src="github.png" alt="GitHub"></a></li>
+            <li><a href="https://space.bilibili.com/25121455"><img src="bilibili-line.png" alt="BiliBili"></a></li>
+            <li><a href="http://wpa.qq.com/msgrd?v=3&uin=1364876516&site=qq&menu=yes"><img src="QQ.png" alt="QQ"></a></li>
+        </ul>
+
+</body>
+<div class="BackgroundImg"></div>
+<script src="jquery-1.11.2.min.js"></script>
+<script> 
+    $('.wrapper').mousemove(function(e) {
+        var x = (e.pageX * -1 / 2), y = (e.pageY * -1 / 2);
+        $('.BackgroundImg').css('background-position', x + 'px ' + y + 'px');
+    });
+</script>
+</html>

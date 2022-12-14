@@ -1,0 +1,68 @@
+body{
+    font-family: Helvetica, sans-serif;
+    color: #222;
+}
+
+h1{
+    margin: 15px 0;
+}
+
+h2{
+    margin: 0;
+    font-weight: 100;
+}
+
+img{
+    width: 100%;
+}
+
+.card{
+    background-color: #f3f3f3;
+    box-shadow: rgba(0, 0, 0, 0.1) 10px 10px 1px;
+    border-radius: 15px;
+    border-color: rgba(255, 126, 126, 0.3);
+    box-shadow: 0px 0px 20px 0px rgba(255, 126, 126);display: block;
+    border-style: solid;
+    margin: 10% auto;
+    width: 400px;
+    text-align: center;
+}
+
+.card .avatar{
+    box-shadow: rgba(0, 0, 0, 0.1) 10px 10px 1px;
+    width: 100px;
+    border-radius: 50%;
+    margin-top: -50px;
+    background-color: #222;
+}
+
+.contacts{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.contacts li{
+    width: 30px;
+    display: inline-block;
+    padding: 20px 10px;
+}
+
+.contacts li a img:hover{
+    opacity: 0.5;
+    transition: opacity ease-in-out 0.2s;
+}
+
+.BackgroundImg{
+    background: #fff url(sp20221114_132721_175.png) no-repeat 0 0;
+    background-size: 120%;
+    position:absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    z-index: -1;
+    filter:blur(5px);
+}
+
