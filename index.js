@@ -1,5 +1,5 @@
 var exalUrl = "/data/lianjin.xlsx"
-var dlc=0
+var dlc=5
 var levelList = new Array()
 var currentLevel = 1
 var currentExp =0

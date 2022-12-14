@@ -63,7 +63,7 @@
                         <i class="menu-item-last iconfont icon-down"></i>
                     </label>
                     <div class="menu-content jobList">
-                        <input type="radio" name="dlc" id="dlc1" checked="checked">
+                        <input type="radio" name="dlc" id="dlc1">
                         <label for="dlc1" onclick="DlcOnClick(0)">重生之境</label>
                         <input type="radio" name="dlc" id="dlc2">
                         <label for="dlc2" onclick="DlcOnClick(1)">苍穹之禁城</label>
@@ -73,7 +73,7 @@
                         <label for="dlc4" onclick="DlcOnClick(3)">红莲之狂潮</label>
                         <input type="radio" name="dlc" id="dlc5">
                         <label for="dlc5" onclick="DlcOnClick(4)">暗影之逆袭</label>
-                        <input type="radio" name="dlc" id="dlc6">
+                        <input type="radio" name="dlc" id="dlc6" checked="checked">
                         <label for="dlc6" onclick="DlcOnClick(5)">晓月之终途</label>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                 <div class="Level-interval">
                     <div class="spin-button CurrentLevel">
                         <!-- Input -->
-                        <input type="text" id="LevelInput" class="spin-button__input CurrentLevel" required onchange="calculateResult()"/>
+                        <input type="text" id="LevelInput" class="spin-button__input CurrentLevel" required onchange="calculateResult()" value="90"/>
                         <label class="spin-button__label">当前等级</label>
                     </div>
                     <div class="spin-button CurrentExp">
