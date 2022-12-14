@@ -1,5 +1,5 @@
 var exalUrl = "/data/lianjin.xlsx"
-var dlc=5
+var dlc=0
 var levelList = new Array()
 var currentLevel = 1
 var currentExp =0
@@ -100,14 +100,15 @@ function exalToSheet(){
 		    })
         }
 
-        OnHqChange()
+        OnElementChange()
 	};
 	
 	req.send();
 }
 
-function OnHqChange(){
+function OnElementChange(){
     let HQChecked = !document.getElementById("HQCheck").checked
+
     let list_dom = document.querySelector(".missionListBody")
     
 
@@ -153,6 +154,7 @@ function OnHqChange(){
     calculateResult()
 }
 
+
 function addTH(data){
 
     var dataData=new Array()
@@ -179,40 +181,42 @@ function makeitem(data,dataData){
     item.className = 'item'
 
     item.addEventListener('click',function(e){
-        let item = document.createElement('tr')
-        item.className = 'item'
+        if(currentLevel>=Number(this.cells[0].innerHTML)){
+            let item = document.createElement('tr')
+            item.className = 'item'
 
-        item.innerHTML +=  this.innerHTML
+            item.innerHTML +=  this.innerHTML
 
-        item.cells[3].style.display = 'none'
-        item.cells[4].style.display = 'none'
+            item.cells[3].style.display = 'none'
+            item.cells[4].style.display = 'none'
 
 
-        item.innerHTML += '<th class="box missionNum">1</th>'
+            item.innerHTML += '<th class="box missionNum">1</th>'
 
-        let list_domm = document.querySelector('.selectListBody')
+            let list_domm = document.querySelector('.selectListBody')
 
-        for(let i=0;i<list_domm.rows.length;i++){
-            if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
-            {
-                list_domm.rows[i].cells[6].innerHTML++
-                return
+            for(let i=0;i<list_domm.rows.length;i++){
+                if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
+                {
+                    list_domm.rows[i].cells[6].innerHTML++
+                    calculateResult()
+                    return
+                }
             }
-        }
 
-        item.addEventListener('click',function(e){
-            if(this.cells[6].innerHTML>1){
-                this.cells[6].innerHTML--
-                
-            }
-            else{
-                this.remove()
-            }
+            item.addEventListener('click',function(e){
+                if(this.cells[6].innerHTML>1){
+                    this.cells[6].innerHTML--
+                }
+                else{
+                    this.remove()
+                }
+                calculateResult()
+            })
+
+            list_domm.appendChild(item)
             calculateResult()
-        })
-
-        list_domm.appendChild(item)
-        calculateResult()
+        }
     },false)
 
     var level = ""
@@ -227,14 +231,18 @@ function makeitem(data,dataData){
             }
         }
     }
-    
-
     item.innerHTML +=  `<td class="box level">${level}</td>`
     item.innerHTML +=  `<td class="name">${missionName}</td>`
     item.innerHTML +=  `<td class="place">${dataData[3]}</td>`
     item.innerHTML +=  `<td class="box exp">${dataData[1]}</td>`
     item.innerHTML +=  `<td class="box gold">${dataData[0]}</td>`
     item.innerHTML +=  `<td class="box item">${dataData[4]}</td>`
+
+    if(level>currentLevel){
+        for(let i=0;i<6;i++){
+            item.cells[i].style.color="#EB455F";
+        }
+    }
 
     return item
 }
@@ -250,40 +258,42 @@ function addTHZhujia(data){
     item.className = 'item'
     
     item.addEventListener('click',function(e){
-        let item = document.createElement('tr')
-        item.className = 'item'
+        if(currentLevel>=Number(this.cells[0].innerHTML)){
+            let item = document.createElement('tr')
+            item.className = 'item'
 
-        item.innerHTML +=  this.innerHTML
+            item.innerHTML +=  this.innerHTML
 
-        item.cells[3].style.display = 'none'
-        item.cells[4].style.display = 'none'
+            item.cells[3].style.display = 'none'
+            item.cells[4].style.display = 'none'
 
 
-        item.innerHTML += '<th class="box missionNum">1</th>'
+            item.innerHTML += '<th class="box missionNum">1</th>'
 
-        let list_domm = document.querySelector('.selectListBody')
+            let list_domm = document.querySelector('.selectListBody')
 
-        for(let i=0;i<list_domm.rows.length;i++){
-            if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
-            {
-                list_domm.rows[i].cells[6].innerHTML++
-                return
+            for(let i=0;i<list_domm.rows.length;i++){
+                if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
+                {
+                    list_domm.rows[i].cells[6].innerHTML++
+                    calculateResult()
+                    return
+                }
             }
-        }
 
-        item.addEventListener('click',function(e){
-            if(this.cells[6].innerHTML>1){
-                this.cells[6].innerHTML--
-                
-            }
-            else{
-                this.remove()
-            }
+            item.addEventListener('click',function(e){
+                if(this.cells[6].innerHTML>1){
+                    this.cells[6].innerHTML--
+                }
+                else{
+                    this.remove()
+                }
+                calculateResult()
+            })
+
+            list_domm.appendChild(item)
             calculateResult()
-        })
-
-        list_domm.appendChild(item)
-        calculateResult()
+        }
     },false)
 
     var level = ""
@@ -306,6 +316,12 @@ function addTHZhujia(data){
     item.innerHTML +=  `<td class="box exp">${dataData[2]}</td>`
     item.innerHTML +=  `<td class="box gold">${dataData[3]}</td>`
     item.innerHTML +=  `<td class="box item">${dataData[4]}</td>`
+
+    if(level>currentLevel){
+        for(let i=0;i<6;i++){
+            item.cells[i].style.color="#EB455F";
+        }
+    }
 
     return item
 }
@@ -320,40 +336,42 @@ function addTDZhujia(data){
     item.className = 'item'
     
     item.addEventListener('click',function(e){
-        let item = document.createElement('tr')
-        item.className = 'item'
+        if(currentLevel>=Number(this.cells[0].innerHTML)){
+            let item = document.createElement('tr')
+            item.className = 'item'
 
-        item.innerHTML +=  this.innerHTML
+            item.innerHTML +=  this.innerHTML
 
-        item.cells[3].style.display = 'none'
-        item.cells[4].style.display = 'none'
+            item.cells[3].style.display = 'none'
+            item.cells[4].style.display = 'none'
 
 
-        item.innerHTML += '<th class="box missionNum">1</th>'
+            item.innerHTML += '<th class="box missionNum">1</th>'
 
-        let list_domm = document.querySelector('.selectListBody')
+            let list_domm = document.querySelector('.selectListBody')
 
-        for(let i=0;i<list_domm.rows.length;i++){
-            if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
-            {
-                list_domm.rows[i].cells[6].innerHTML++
-                return
+            for(let i=0;i<list_domm.rows.length;i++){
+                if(list_domm.rows[i].cells[1].innerHTML == item.cells[1].innerHTML)
+                {
+                    list_domm.rows[i].cells[6].innerHTML++
+                    calculateResult()
+                    return
+                }
             }
-        }
 
-        item.addEventListener('click',function(e){
-            if(this.cells[6].innerHTML>1){
-                this.cells[6].innerHTML--
-                
-            }
-            else{
-                this.remove()
-            }
+            item.addEventListener('click',function(e){
+                if(this.cells[6].innerHTML>1){
+                    this.cells[6].innerHTML--
+                }
+                else{
+                    this.remove()
+                }
+                calculateResult()
+            })
+
+            list_domm.appendChild(item)
             calculateResult()
-        })
-
-        list_domm.appendChild(item)
-        calculateResult()
+        }
     },false)
 
     var level = ""
@@ -377,13 +395,29 @@ function addTDZhujia(data){
     item.innerHTML +=  `<td class="box gold">${dataData[3]}</td>`
     item.innerHTML +=  `<td class="box item">${dataData[4]}</td>`
 
+    if(level>currentLevel){
+        for(let i=0;i<6;i++){
+            item.cells[i].style.color="#EB455F";
+        }
+    }
+
     return item
 }
 
 function calculateResult(){
-    let exp =0
 
-    currentLevel =1
+    currentLevel = document.getElementById("LevelInput").value
+
+    currentExp = document.getElementById("ExpInput").value
+
+    if(currentExp == "" || currentExp<0){
+        currentExp=0
+    }
+
+    if(currentLevel == "" ||currentLevel<1){
+        currentLevel=1
+    }
+
     totalGold =0 
     totalCostNum =0
     
@@ -392,33 +426,52 @@ function calculateResult(){
     for(let i=0;i<list_domm.rows.length;i++){
         let item = list_domm.rows[i]
         
-        exp += Number(item.cells[3].innerHTML)
+        for(let j=0;j<item.cells[6].innerHTML;j++){
+            currentExp += Number(item.cells[3].innerHTML)
         
     
-        totalCostNum++
+            totalCostNum++
         
         
-        if(item.cells[5].innerHTML.indexOf('（3次）')>-1){
-            totalGold += Number(item.cells[4].innerHTML)
-            totalGold += Number(item.cells[4].innerHTML)
-            totalGold += Number(item.cells[4].innerHTML)
-        }
-        else{
-            totalGold += Number(item.cells[4].innerHTML)
-        }
-    }
-    for(let i=currentLevel-1;i<levelList.length;i++){
-        if(exp>=levelList[i][1]){
-            exp -= levelList[i][1]
-            currentLevel++ 
-        }
-        else{
-            break
+            if(item.cells[5].innerHTML.indexOf('（3次）')>-1){
+                totalGold += Number(item.cells[4].innerHTML)
+                totalGold += Number(item.cells[4].innerHTML)
+                totalGold += Number(item.cells[4].innerHTML)
+            }
+            else{
+                totalGold += Number(item.cells[4].innerHTML)
+            }
         }
     }
 
+
+    if(currentLevel < 90){
+        for(let i=currentLevel-1;i<levelList.length;i++){
+            if(currentExp>=levelList[i][1]){
+                currentExp -= levelList[i][1]
+                currentLevel++ 
+                if(currentLevel == 90){
+                    currentExp=0
+                    break
+                }
+            }
+            else{
+                break
+            }
+        }
+    }
+    else{
+        currentLevel = 90
+        currentExp =0
+    }
+
     let PerNum = document.querySelector('.afterPer')
-    let per =exp/levelList[currentLevel-1][1]*100
+    let per =currentExp/levelList[currentLevel-1][1]*100
+
+    if(currentLevel == 90){
+        per=100
+    }
+
     let perbar = document.querySelector('.inside-per')
     perbar.style.width = `${per}%`
     PerNum.innerHTML = `${per.toFixed(2)}%`
@@ -427,7 +480,7 @@ function calculateResult(){
     LevelNum.innerHTML = `等级:${currentLevel}`
 
     let ExpNum = document.querySelector('.afterExp')
-    ExpNum.innerHTML = `经验值:${exp}/${levelList[currentLevel-1][1]}`
+    ExpNum.innerHTML = `经验值:${currentExp}/${levelList[currentLevel-1][1]}`
 
     let CostNum = document.querySelector('.totalCost')
     CostNum.innerHTML=`消耗理符数量：${totalCostNum}`
@@ -435,4 +488,19 @@ function calculateResult(){
     let GoldNum = document.querySelector('.totalGold')
     GoldNum.innerHTML=`获得金币数：${totalGold}`
 
+
+    let list_dom = document.querySelector('.missionListBody')
+    for(let i=0;i<list_dom.rows.length;i++){
+        let item = list_dom.rows[i]
+        if(currentLevel>=Number(item.cells[0].innerHTML)){
+            for(let i=0;i<6;i++){
+                item.cells[i].style.color="black";
+            }
+        }
+        else{
+            for(let i=0;i<6;i++){
+                item.cells[i].style.color="#EB455F";
+            }
+        }
+    }
 }
